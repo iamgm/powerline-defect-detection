@@ -81,7 +81,7 @@ def render_zoomable_image(image_pil, caption=""):
             justify-content: center;   /* Центрируем картинку */
         }}
         .zoom-img {{
-            max-width: 100%;           /* 2. Используем max-width вместо width */
+            max-width: 100%;           /* Используем max-width вместо width */
             height: auto;
             display: block;
             transition: transform 0.2s ease;
@@ -117,7 +117,7 @@ def render_zoomable_image(image_pil, caption=""):
     </script>
     """
     # утанавливаем высоту компонента равной высоте картинки + 50px на подпись
-    st.components.v1.html(html_code, height=img_h + 50, scrolling=False)
+    st.components.v1.html(html_code, height=img_h + 20, scrolling=False)
 
 #-----------------------------------------------------------------------------
 # setup page
@@ -125,7 +125,6 @@ st.set_page_config(page_title="PowerLine Defect Detection", page_icon="⚡", lay
 
 # CSS HACKS
 
-# cSS HACKS
 st.markdown(f"""
     <style>
     :root {{ --primary-color: {THEME_COLOR}; }}
@@ -147,41 +146,32 @@ st.markdown(f"""
         background-color: white;
         border-radius: 8px;
     }}
-    
-    /* фиксация сайдбара */
-    /* фиксируем сам блок сайдбара */
-    section[data-testid="stSidebar"] {{
-        position: fixed !important;
-        top: 0 !important;
-        left: 0 !important;
-        height: 100vh !important;
-        width: 300px !important; 
-        overflow-y: auto !important;
-        z-index: 99999 !important;
-        box-shadow: 2px 0 5px rgba(0,0,0,0.1);
-    }}
 
-    /* сдвигаем основной контент вправо */
-    .main .block-container {{
-        margin-left: 300px !important;
-        max-width: calc(100% - 300px) !important; 
-        padding-top: 2rem;
-    }}
-
-    /* адаптив для мобильных (возвращаем как было, если экран узкий) */
-    @media (max-width: 768px) {{
-        section[data-testid="stSidebar"] {{
-            position: relative !important;
-            width: 100% !important;
-            height: auto !important;
+    /* фиксация и сдвиг */
+    @media (min-width: 992px) {{
+        /* 1. Фиксируем сайдбар и задаем ему ширину 300px */
+        [data-testid="stSidebar"] {{
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            height: 100vh !important;
+            width: 300px !important;
+            z-index: 99999 !important;
+            overflow-y: auto !important;
         }}
-        .main .block-container {{
-            margin-left: 0 !important;
-            max-width: 100% !important;
+        
+        /* cдвигаем основной контент вправо на 300px */
+        [data-testid="stMain"] {{
+            margin-left: 300px !important;
+            width: calc(100% - 300px) !important;
+        }}
+        
+        /* cкрываем кнопку закрытия сайдбара, т.к. при фиксации она может ломать верстку */
+        [data-testid="stSidebarCollapseButton"] {{
+            display: none !important;
         }}
     }}
-    /* ---------------------------- */
-
+    /* ------------------------ */
     </style>
 """, unsafe_allow_html=True)
 
