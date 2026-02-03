@@ -8,13 +8,14 @@ FROM python:3.11-slim
 #     && rm -rf /var/lib/apt/lists/*
 
 # исправленая команда для Debian Trixie
-RUN apt-get update && apt-get install -y \\
-    libgl1 \\
-    libglib2.0-0t64 \\
+RUN apt-get update && apt-get install -y \
+    libgl1 \
+    libglib2.0-0t64 \
     libsm6 \
     libxext6 \
     libxrender1 \
     && rm -rf /var/lib/apt/lists/*
+
 
 
 
