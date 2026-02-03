@@ -62,6 +62,9 @@ def render_zoomable_image(image_pil, caption=""):
     img_copy = image_pil.copy()
     img_copy.thumbnail((800, 800)) 
     
+    # получаем реальные размеры после ресайза
+    img_w, img_h = img_copy.size
+    
     buffered = io.BytesIO()
     img_copy.save(buffered, format="PNG")
     img_str = base64.b64encode(buffered.getvalue()).decode()
@@ -74,9 +77,11 @@ def render_zoomable_image(image_pil, caption=""):
             border-radius: 8px;
             cursor: crosshair;
             width: 100%;
+            display: flex;             /* Центрируем картинку */
+            justify-content: center;   /* Центрируем картинку */
         }}
         .zoom-img {{
-            width: 100%;
+            max-width: 100%;           /* 2. Используем max-width вместо width */
             height: auto;
             display: block;
             transition: transform 0.2s ease;
@@ -90,7 +95,7 @@ def render_zoomable_image(image_pil, caption=""):
     <div class="zoom-container" onmousemove="zoom(event)" onmouseleave="reset(event)">
         <img src="data:image/png;base64,{img_str}" class="zoom-img" id="img-{caption}">
     </div>
-    <div style="margin-top: 5px; color: #555; font-size: 0.9em;">{caption}</div>
+    <div style="margin-top: 5px; color: #555; font-size: 0.9em; text-align: center;">{caption}</div>
 
     <script>
         function zoom(e) {{
@@ -111,7 +116,8 @@ def render_zoomable_image(image_pil, caption=""):
         }}
     </script>
     """
-    st.components.v1.html(html_code, height=400, scrolling=False)
+    # утанавливаем высоту компонента равной высоте картинки + 50px на подпись
+    st.components.v1.html(html_code, height=img_h + 50, scrolling=False)
 
 #-----------------------------------------------------------------------------
 # setup page
