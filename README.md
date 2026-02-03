@@ -1,3 +1,15 @@
+---
+title: Powerline Defect Detection
+emoji: ⚡
+colorFrom: gray
+colorTo: blue
+sdk: docker
+pinned: false
+license: mit
+short_description: powerline defect detection
+---
+
+
 # ⚡ Power Line Defect Detection
 
 ![Python](https://img.shields.io/badge/Python-3.11-blue)
