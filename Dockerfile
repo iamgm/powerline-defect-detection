@@ -2,10 +2,21 @@
 FROM python:3.11-slim
 
 # устанавливаем системные зависимости для OpenCV (важно для YOLO)
-RUN apt-get update && apt-get install -y \
-    libgl1-mesa-glx \
-    libglib2.0-0 \
+# RUN apt-get update && apt-get install -y \
+#     libgl1-mesa-glx \
+#     libglib2.0-0 \
+#     && rm -rf /var/lib/apt/lists/*
+
+# исправленая команда для Debian Trixie
+RUN apt-get update && apt-get install -y \\
+    libgl1 \\
+    libglib2.0-0t64 \\
+    libsm6 \
+    libxext6 \
+    libxrender1 \
     && rm -rf /var/lib/apt/lists/*
+
+
 
 # создаем рабочую директорию
 WORKDIR /app
