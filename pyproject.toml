@@ -1,0 +1,19 @@
+[project]
+name = "powerline-defect-detection"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "celery>=5.6.2",
+    "clearml>=2.1.2",
+    "fastapi>=0.128.0",
+    "pydantic-settings>=2.12.0",
+    "python-multipart>=0.0.22",
+    "redis>=7.1.0",
+    "requests>=2.32.5",
+    "streamlit>=1.53.1",
+    "tqdm>=4.67.1",
+    "ultralytics>=8.4.7",
+    "uvicorn[standard]>=0.40.0",
+]

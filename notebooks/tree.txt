@@ -1,0 +1,8 @@
+Folder PATH listing
+Volume serial number is 77C7-C6CA
+E:.
+    check_data.py
+    tree.txt
+    
+No subfolders exist 
+

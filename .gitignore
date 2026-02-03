@@ -1,0 +1,21 @@
+# Python
+*.py[cod]
+__pycache__/
+.env
+.venv/
+venv/
+.ipynb_checkpoints/
+*.pyc
+
+
+# Data
+data/
+*.zip
+*.tar
+
+# Models (веса тяжелые)
+weights/
+*.pt
+
+# Environment
+.DS_Store
