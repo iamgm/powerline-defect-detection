@@ -123,7 +123,8 @@ def render_zoomable_image(image_pil, caption=""):
 # setup page
 st.set_page_config(page_title="PowerLine Defect Detection", page_icon="⚡", layout="wide")
 
-# cSS HACKS
+# CSS HACKS
+
 st.markdown(f"""
     <style>
     :root {{ --primary-color: {THEME_COLOR}; }}
@@ -145,6 +146,15 @@ st.markdown(f"""
         background-color: white;
         border-radius: 8px;
     }}
+    /* фиксация сайдбара */
+    section[data-testid="stSidebar"] {{
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        z-index: 1000;
+    }}
+
     </style>
 """, unsafe_allow_html=True)
 
@@ -371,7 +381,7 @@ if st.session_state.results:
                     prog_bar.progress((i+1)/total_check)
                 st.rerun()
 
-        with st.container(height=500):
+        with st.container():
             for name, item in clean_list:
                 detections = item['data'].get('detections', [])
                 img_res, _, cnt_vis = draw_detections(item['file_obj'], detections, selected_classes)
