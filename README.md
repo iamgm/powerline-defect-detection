@@ -7,6 +7,7 @@
 ![Docker](https://img.shields.io/badge/Docker-Ready-2496ED)
 
 ![example_1](./examples/example_1.png)
+![More examples](./examples)
 
 Система автоматической дефектоскопии линий электропередач (ЛЭП) с использованием компьютерного зрения. Проект решает задачу обнаружения неисправностей и инвентаризации оборудования на снимках с БПЛА, используя ориентированные bounding box'ы (OBB) для высокой точности.
 
@@ -38,12 +39,6 @@
   * `vibration_damper` — Виброгасители.
   * `traverse` — Траверсы.
   * `safety_sign+` — Информационные таблички.
-
----
-
-![example_2](./examples/example_2.png)
-![example_3](./examples/example_3.png)
-![example_4](./examples/example_4.png)
 
 ---
 
