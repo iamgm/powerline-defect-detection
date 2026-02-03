@@ -148,12 +148,13 @@ st.markdown(f"""
     }}
     /* фиксация сайдбара */
     section[data-testid="stSidebar"] {{
-        position: sticky !important;
-        top: 0 !important;
-        height: 100vh !important;
-        overflow-y: auto !important; /* Разрешить скролл внутри сайдбара */
-        z-index: 1000 !important;
+        position: fixed  !important;
+        top: 0  !important;
+        left: 0  !important;
+        height: 100vh  !important;
+        z-index: 1000  !important;
     }}
+
     </style>
 """, unsafe_allow_html=True)
 
