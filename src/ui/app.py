@@ -125,6 +125,7 @@ st.set_page_config(page_title="PowerLine Defect Detection", page_icon="⚡", lay
 
 # CSS HACKS
 
+# cSS HACKS
 st.markdown(f"""
     <style>
     :root {{ --primary-color: {THEME_COLOR}; }}
@@ -146,14 +147,16 @@ st.markdown(f"""
         background-color: white;
         border-radius: 8px;
     }}
-    /* фиксация сайдбара */
-    section[data-testid="stSidebar"] {{
-        position: fixed  !important;
-        top: 0  !important;
-        left: 0  !important;
-        height: 100vh  !important;
-        z-index: 1000  !important;
+    
+    /* stiky sidebar */
+    [data-testid="stSidebar"] {{
+        position: sticky !important; /* Липкое позиционирование */
+        top: 0 !important;           /* Прижать к верху */
+        height: 100vh !important;    /* Высота во весь экран */
+        overflow-y: auto !important; /* Скролл внутри сайдбара, если контента много */
+        z-index: 10000 !important;   /* Поверх всего */
     }}
+    /* ---------------------------- */
 
     </style>
 """, unsafe_allow_html=True)
