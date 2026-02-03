@@ -148,13 +148,37 @@ st.markdown(f"""
         border-radius: 8px;
     }}
     
-    /* stiky sidebar */
-    [data-testid="stSidebar"] {{
-        position: sticky !important; /* Липкое позиционирование */
-        top: 0 !important;           /* Прижать к верху */
-        height: 100vh !important;    /* Высота во весь экран */
-        overflow-y: auto !important; /* Скролл внутри сайдбара, если контента много */
-        z-index: 10000 !important;   /* Поверх всего */
+    /* фиксация сайдбара */
+    /* фиксируем сам блок сайдбара */
+    section[data-testid="stSidebar"] {{
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        height: 100vh !important;
+        width: 300px !important; 
+        overflow-y: auto !important;
+        z-index: 99999 !important;
+        box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    }}
+
+    /* сдвигаем основной контент вправо */
+    .main .block-container {{
+        margin-left: 300px !important;
+        max-width: calc(100% - 300px) !important; 
+        padding-top: 2rem;
+    }}
+
+    /* адаптив для мобильных (возвращаем как было, если экран узкий) */
+    @media (max-width: 768px) {{
+        section[data-testid="stSidebar"] {{
+            position: relative !important;
+            width: 100% !important;
+            height: auto !important;
+        }}
+        .main .block-container {{
+            margin-left: 0 !important;
+            max-width: 100% !important;
+        }}
     }}
     /* ---------------------------- */
 
