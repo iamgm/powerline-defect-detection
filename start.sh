@@ -9,4 +9,8 @@ sleep 5
 
 # запускаем Streamlit на порту 7860 (Требование Hugging Face)
 echo "🚀 Starting Streamlit Frontend..."
-streamlit run src/ui/app.py --server.port 7860 --server.address 0.0.0.0
+streamlit run src/ui/app.py  \
+    --server.port=7860 \
+    --server.address=0.0.0.0 \
+    --server.enableXsrfProtection=false \
+    --server.enableCORS=false
