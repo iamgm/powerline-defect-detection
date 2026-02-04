@@ -147,28 +147,35 @@ st.markdown(f"""
         border-radius: 8px;
     }}
 
-    /* фиксация и сдвиг */
-    @media (min-width: 992px) {{
-        /* 1. Фиксируем сайдбар и задаем ему ширину 300px */
+    /* фиксация  сайдбара */
+    /*  оставляем "пустую" оболочку сайдбара */
+    [data-testid="stSidebar"] {{
+        min-width: 300px !important;
+        max-width: 300px !important;
+        flex-shrink: 0 !important;
+    }}
+
+    /*  а вот содержимое фиксируем намертво */
+    [data-testid="stSidebarContent"] {{
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 300px !important; /* Должно совпадать с шириной оболочки */
+        height: 100vh !important;
+        overflow-y: auto !important;
+        z-index: 10000 !important;
+        background-color: #f0f2f6; 
+    }}
+    
+    /*  на мобильных убираем фиксацию, иначе сломается */
+    @media (max-width: 768px) {{
+        [data-testid="stSidebarContent"] {{
+            position: relative !important;
+            width: 100% !important;
+            height: auto !important;
+        }}
         [data-testid="stSidebar"] {{
-            position: fixed !important;
-            top: 0 !important;
-            left: 0 !important;
-            height: 100vh !important;
-            width: 300px !important;
-            z-index: 99999 !important;
-            overflow-y: auto !important;
-        }}
-        
-        /* cдвигаем основной контент вправо на 300px */
-        [data-testid="stMain"] {{
-            margin-left: 300px !important;
-            width: calc(100% - 300px) !important;
-        }}
-        
-        /* cкрываем кнопку закрытия сайдбара, т.к. при фиксации она может ломать верстку */
-        [data-testid="stSidebarCollapseButton"] {{
-            display: none !important;
+            min-width: 100% !important;
         }}
     }}
     /* ------------------------ */
