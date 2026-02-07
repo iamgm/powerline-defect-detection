@@ -14,8 +14,8 @@ data/
 *.tar
 
 # Models (веса тяжелые)
-# weights/
-# *.pt
+weights/
+*.pt
 
 # Environment
 .DS_Store
